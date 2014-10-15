@@ -1,5 +1,6 @@
 package com.target.login;
 
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -38,9 +39,11 @@ public class LoginTest extends TestCase {
 	@Test
 	public static void testLogin() {
 		firefoxDriver = new FirefoxDriver();
+		firefoxDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		firefoxDriver.get("http://m.target.com");
 	    WebElement elem=(new WebDriverWait(firefoxDriver, 10)) //added this line
 	    .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[contains(@class,'prom_signin_icon')]")));
+	    
 	    
 	    //driver.findElement(By.xpath("//a[contains(@class,'prom_signin_icon')]"));
 	    System.out.println(elem.getAttribute("id"));
